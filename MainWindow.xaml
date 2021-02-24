@@ -1,0 +1,80 @@
+﻿<Window x:Name="BonusSystem" x:Class="ClientBonusSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientBonusSystem"
+        mc:Ignorable="d"
+        Title="BonusSystem" Height="650" Width="900"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+    <Grid Background="#FFE4E6F1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="300*"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+
+        <RadioButton x:Name="CheckByNumber" IsChecked="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" 
+                     HorizontalAlignment="Center" Height="14" Width="16" Checked="rdBtnSearchType_Checked"/>
+        <TextBlock Grid.Column="2" Grid.Row="0" FontSize="20" 
+                    Text="CardNumber" 
+                    HorizontalAlignment="Left" Width="114"/>
+        <TextBox x:Name="txtCardNumber" VerticalContentAlignment="Center"  Grid.Column="2"  Grid.Row="1" />
+        <RadioButton x:Name="CheckByPhone" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" 
+                     HorizontalAlignment="Center" Height="14" Width="16" Checked="rdBtnSearchType_Checked"/>
+        <TextBlock Grid.Column="2" Grid.Row="2" FontSize="20" TextAlignment="Right"
+                    Text="PhoneNumber" HorizontalAlignment="Left" Width="129"/>
+        <TextBox x:Name="txtPhoneNumber" VerticalContentAlignment="Center"  Grid.Column="2" Grid.Row="3"  />
+
+        <DataGrid x:Name="grdClients" Grid.Row="5" Grid.Column="2"  FontSize="16" FontWeight="DemiBold"   AutoGenerateColumns="False" Loaded="grdClients_Loaded" CanUserAddRows="False" CanUserDeleteRows="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path = CardNumber}"  Header="CardNumber"  Width="120"/>
+                <DataGridTextColumn Binding="{Binding Path = PhoneNumber}" Header="PhoneNumber" Width="120"  />
+                <DataGridTextColumn Binding="{Binding Path = FirstName}" Header="FirstName"  />
+                <DataGridTextColumn Binding="{Binding Path = LastName}" Header="LastName"   />
+                <DataGridTextColumn Binding="{Binding Path = Balance}" Header="Balance"  Width="120" />
+                <DataGridTextColumn Binding="{Binding Path = CreationDate }" Header="CreationDate" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding Path = ExpirationDate}" Header="ExpirationDate" Width="120" Visibility="Hidden"/>
+                <DataGridTemplateColumn Header="Details">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnCreate" Style="{StaticResource AddCardButton}" Content="Details" Click="btnCreate_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid HorizontalAlignment="Stretch" Grid.Row="6" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button  Width="Auto"  Content="Add Client" x:Name="btnAddClient"  Grid.Column="0" 
+                      HorizontalAlignment="Stretch"
+                    Style="{StaticResource PrimaryButton}" Click="btnAddClient_Click"  />
+            <Button  Width="Auto" Content="Search"  x:Name="btnSearch" HorizontalAlignment="Stretch"  Grid.Column="3"
+                    Style="{StaticResource SearchButton}" Click="btnSearch_Click"   />
+           
+        </Grid>
+
+
+
+
+
+    </Grid>
+</Window>
